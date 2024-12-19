@@ -33,29 +33,14 @@ class PagesController < ApplicationController
       cookies.delete(:session_key)
       redirect_to action: 'index'
     end
-    join_event = Event.create(character: @character, room: @character.current_room, info: "joined the room (#{ @character.current_room }).")
+    join_event = Event.character_join(@character)
     @events = [join_event]
   end
 
   def receive_command
     @character = Character.find_by(session: cookies[:session_key])
-
     return unless @character.present?
 
-    command, message = params[:command].split(' ', 2)
-
-    if command == 'say'
-      Event.create(
-        character: @character,
-        room: @character.current_room,
-        info: message
-      )
-    else
-      Event.create(
-        character: @character,
-        room: @character.current_room,
-        info: "#{ command } #{ message }"
-      )
-    end
+    Event.handle_command(@character, params[:command])
   end
 end
