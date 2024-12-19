@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_19_173819) do
     t.string "name"
     t.integer "profession", default: 0
     t.string "inventory_data", default: "{}"
-    t.string "score", default: "{}"
+    t.string "score", default: "{\"lvl\":0,\"xp\":0,\"skill_points\":0,\"hp\":10,\"str\":0,\"dex\":0,\"weapon\":null,\"armor\":null,\"shield\":null}"
     t.string "current_room", default: "Lobby"
     t.string "password"
     t.string "session"
