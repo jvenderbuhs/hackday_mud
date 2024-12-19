@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(character) do %>
+  <div class="border flex-col mt-2">
+    <%= character.name %> (<%= character.profession %>)
+  </div>
+<% end %>
