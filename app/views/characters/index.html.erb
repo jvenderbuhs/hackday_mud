@@ -1,8 +1,9 @@
 <div>
-  <h1 class="font-bold text-4xl">Characters#index</h1>
-  <p>Find me in app/views/characters/index.html.erb</p>
+  <h1 class="font-bold text-4xl">Characters</h1>
   <%= turbo_stream_from :characters %>
-  <div id="characters">
+  <ul id="characters">
     <%= render @characters %>
-  </div>
+  </ul>
 </div>
+<hr />
+<a href="/">Home</a>

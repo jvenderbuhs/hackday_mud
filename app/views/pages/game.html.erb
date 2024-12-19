@@ -1,0 +1,20 @@
+<div>
+  <%= turbo_stream_from :events %>
+  <div id="events">
+    <%= render partial: "events/event", collection: @events %>
+  </div>
+  <%= form_with url: command_path, method: :post do |form| %>
+    <%= form.submit "Send" %>
+    <%= form.text_field :command %>
+  <% end %>
+</div>
+<hr />
+<a href=<%= pages_logout_path %>>Log Out</a><br />
+
+<script>
+  document.querySelector('form').onsubmit = e => {
+    e.target.submit();
+    e.target.reset();
+    return false;
+  };
+</script>

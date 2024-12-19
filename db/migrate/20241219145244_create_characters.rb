@@ -5,7 +5,9 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.integer :profession, default: 0
       t.string :inventory_data, default: '{}'
       t.string :score, default: '{}'
-      t.string :current_room, default: ""
+      t.string :current_room, default: "Lobby"
+      t.string :password
+      t.string :session
     end
   end
 end

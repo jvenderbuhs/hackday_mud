@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_19_145244) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_19_173819) do
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.integer "profession", default: 0
     t.string "inventory_data", default: "{}"
     t.string "score", default: "{}"
-    t.string "current_room", default: ""
+    t.string "current_room", default: "Lobby"
+    t.string "password"
+    t.string "session"
   end
 
+# Could not dump table "events" because of following StandardError
+#   Unknown type 'id' for column 'character_id'
+
+  add_foreign_key "events", "characters"
 end
