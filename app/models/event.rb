@@ -21,7 +21,8 @@ class Event < ApplicationRecord
     'Forest' => {
       neighbours: ['Valley', 'Manor'],
       description: 'You are in a dark forest, "spider"-webs span between the trees that slow your advance. ' \
-                   'Behind you is a delightful "valley" and further down the trail you can barely make out a "manor".'
+                   'Behind you is a delightful "valley" and further down the trail you can barely make out a "manor".',
+      enemies: ['Spider']
     },
     'Manor' => {
       neighbours: ['Forest'],
@@ -54,6 +55,14 @@ class Event < ApplicationRecord
       armor_class: 11,
       accuracy: -1,
       damage: '1d2'
+    },
+    'Spider' => {
+      type: :beast,
+      xp: 21,
+      hit_points: 45,
+      armor_class: 16,
+      accuracy: 4,
+      damage: '2d4'
     }
   }
 
