@@ -31,7 +31,7 @@ class PagesController < ApplicationController
 
     if @character.blank?
       cookies.delete(:session_key)
-      redirect_to action: 'index'
+      redirect_to action: 'index' and return
     end
     join_event = Event.character_join(@character)
     @events = [join_event]

@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.references :character, type: :id, foreign_key: true
       t.string :room
       t.string :info
+      t.boolean :personal, default: false
 
       t.timestamps
     end
