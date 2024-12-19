@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  broadcasts_to ->(event) { :events }
+  broadcasts_to ->(event) { "events_#{ event.room }" }
   belongs_to :character
   validates :room, presence: true
   validates :info, presence: true
@@ -69,12 +69,18 @@ class Event < ApplicationRecord
     def move(character, room)
       room = room.titleize
       if ROOMS.keys.include?(room) && ROOMS[room][:neighbours].include?(character.current_room)
+        old_room = character.current_room
+        character.update(current_room: room)
+        Event.create(
+          character: character,
+          room: old_room,
+          info: "left the '#{ character.current_room } to explore the '#{ room }'."
+        )
         Event.create(
           character: character,
           room: room,
-          info: "left the '#{ character.current_room } to explore the '#{ room }'."
+          info: "entered the '#{ room }' coming from the '#{ old_room }'."
         )
-        character.update(current_room: room)
       elsif room == character.current_room
         Event.create(
           character: character,

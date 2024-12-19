@@ -1,8 +1,8 @@
 <div>
-  <%= turbo_stream_from :events %>
-  <div id="events">
-    <%= render partial: "events/event", collection: @events %>
-  </div>
+  <%= turbo_stream_from :players %>
+  <%= turbo_frame_tag dom_id(@character) do %>
+    <%= render partial: "characters/player", locals: { character: @character } %>
+  <% end %>
   <%= form_with url: command_path, method: :post do |form| %>
     <%= form.submit "Send" %>
     <%= form.text_field :command %>

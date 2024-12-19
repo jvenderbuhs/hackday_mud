@@ -1,0 +1,7 @@
+<%= turbo_frame_tag dom_id(character) do %>
+  <%= character.name %> (<%= character.profession %>) [<%= character.current_room %>]
+  <%= turbo_stream_from "events_#{ character.current_room }" %>
+  <div id="events">
+    <%= render partial: "events/event", collection: @events %>
+  </div>
+<% end %>

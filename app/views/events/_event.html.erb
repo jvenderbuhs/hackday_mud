@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(event) do %>
-  <p>
+  <p id="<%= event.room %>">
     [<%= event.created_at.strftime("%H:%M:%S") %>] <%= event.character.name %>: <%= event.info %>
   </p>
 <% end %>
